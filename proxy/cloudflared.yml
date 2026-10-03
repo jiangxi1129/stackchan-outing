@@ -1,0 +1,8 @@
+tunnel: REPLACE_WITH_TUNNEL_ID
+credentials-file: /path/to/REPLACE_WITH_TUNNEL_ID.json
+ingress:
+  - hostname: robot.example.com
+    path: /q/*
+    service: http://127.0.0.1:18760
+  - service: http_status:404
+

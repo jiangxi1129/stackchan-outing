@@ -1,0 +1,8 @@
+# Public /q/* only. The relay validates the device token.
+robot.example.com {
+    handle /q/* {
+        reverse_proxy 127.0.0.1:18760
+    }
+    respond 404
+}
+
