@@ -2,7 +2,9 @@ tunnel: REPLACE_WITH_TUNNEL_ID
 credentials-file: /path/to/REPLACE_WITH_TUNNEL_ID.json
 ingress:
   - hostname: robot.example.com
-    path: /q/*
+    # cloudflared treats path as a regular expression: anchor it, or /anything/q would match too.
+    path: ^/q/
     service: http://127.0.0.1:18760
+  # Tunnel ingress cannot drop a connection; a bare 404 is the closest.
   - service: http_status:404
 

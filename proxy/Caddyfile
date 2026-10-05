@@ -1,8 +1,12 @@
 # Public /q/* only. The relay validates the device token.
-robot.example.com {
+# http:// on purpose: the ESP32 firmware speaks plain HTTP through the phone's CONNECT proxy and cannot follow
+# Caddy's automatic redirect to https. Use https:// only if your firmware has a working TLS client.
+http://robot.example.com {
     handle /q/* {
         reverse_proxy 127.0.0.1:18760
     }
-    respond 404
+    # Anything else: drop the connection without an answer. Scanners learn nothing.
+    handle {
+        abort
+    }
 }
-

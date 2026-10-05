@@ -7,8 +7,11 @@
 #define WIFI_SSID_1 "HOME_WIFI_NAME"
 #define WIFI_PASSWORD_1 "HOME_WIFI_PASSWORD"
 
-// Public reverse proxy → local sc_relay.py. Generate a long random token.
-#define REMOTE_POLL_URL "http://relay.example.invalid/q/poll?t=REPLACE_WITH_RANDOM_TOKEN"
+// Public reverse proxy → local sc_relay.py.
+#define REMOTE_POLL_URL "http://robot.example.com/q/poll"
+// Same long random token as the relay. Sent as the X-SC-Token header so it never sits in a URL
+// (URLs end up in reverse-proxy and CDN logs). Configs that still put ?t=TOKEN on REMOTE_POLL_URL keep working.
+#define REMOTE_TOKEN "REPLACE_WITH_RANDOM_TOKEN"
 
 // Clash-compatible HTTP proxy exposed on the phone hotspot LAN. Set 0 if direct access works.
 #define REMOTE_PROXY_PORT 7890
